@@ -50,10 +50,10 @@ def sample(cfg, rng, n=None, amp=None, t2star_us=None, cm_frac=None):
             "m": rng.integers(-1, 2, n), "s": s, "a": sp["hyperfine_mhz"]}
 
 
-def _h(ens, mode, omega, det, db, phase=0.0, gain2=1.0, extra=0.0):
+def _h(ens, mode, omega, det, db, phase=0.0, gain2=1.0, extra=0.0, base=0.0):
     """Rotating-frame H (MHz) per spin. Tone 1 on the -1 line, tone 2 on +1 (DQ). det: tone detuning (MHz).
     extra: additional magnetic-like shift (MHz) of both lines, e.g. a detuning spread.
-    phase: SQ, phase of the tone; DQ, phase of tone 2 relative to tone 1."""
+    phase: SQ, phase of the tone; DQ, phase of tone 2 relative to tone 1. base: phase added to both tones."""
     n = ens["c"].size
     mag = ens["b"] + db + extra
     d1 = det - ens["c"] + mag + ens["a"] * ens["m"]
@@ -61,10 +61,10 @@ def _h(ens, mode, omega, det, db, phase=0.0, gain2=1.0, extra=0.0):
     h = np.zeros((n, 3, 3), complex)
     h[:, 0, 0], h[:, 2, 2] = -d2, -d1
     o = omega * ens["s"] / 2
-    o1 = o * (1 if mode == "dq" else np.exp(1j * phase))
+    o1 = o * np.exp(1j * (base + (0.0 if mode == "dq" else phase)))
     h[:, 1, 2], h[:, 2, 1] = o1, np.conj(o1)
     if mode == "dq":
-        o2 = gain2 * o * np.exp(1j * phase)
+        o2 = gain2 * o * np.exp(1j * (base + phase))
         h[:, 1, 0], h[:, 0, 1] = o2, np.conj(o2)
     return h, np.stack([-d2, np.zeros(n), -d1], 1)
 
@@ -93,6 +93,15 @@ def rabi(tau, omega, ens, mode="sq", det=0.0, db=0.0, gain2=1.0):
 def odmr(freqs, omega, t_pulse, ens, mode="sq"):
     """Pulsed ODMR: m_s=0 population after one pulse of length t_pulse (us) versus tone detuning (MHz)."""
     return np.array([(np.abs(_u(_h(ens, mode, omega, f, 0.0)[0], t_pulse)[:, 1, 1]) ** 2).mean() for f in freqs])
+
+
+def sequence_u(ens, mode, omega, segs, gain2=1.0, det=0.0, db=0.0, extra=0.0, psi=0.0):
+    """Propagator of a pulse sequence; segs = [(angle, phase)], psi: SQ global phase / DQ relative tone-2 phase."""
+    u = np.broadcast_to(np.eye(3, dtype=complex), (ens["c"].size, 3, 3))
+    for theta, ph in segs:
+        h, _ = _h(ens, mode, omega, det, db, psi, gain2, extra, base=ph)
+        u = _u(h, pulse_len(mode, omega, gain2, theta)) @ u
+    return u
 
 
 def ramsey(tau, omega, ens, mode="sq", det=0.0, phase=0.0, db=0.0, gain2=1.0, extra=0.0):
