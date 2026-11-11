@@ -1,3 +1,5 @@
+import warnings
+
 import numpy as np
 from scipy.optimize import curve_fit
 
@@ -141,7 +143,9 @@ def fit_ramsey(tau, y, mode, hf, f_guess, t_guess):
     model, best = _ramsey_model(hf, k), None
     for tg in (0.5 * t_guess, t_guess, 2 * t_guess):
         try:
-            p, _ = curve_fit(model, tau, y, p0=[y.mean(), 0.5 * np.ptp(y), f_guess, tg, 0.0], maxfev=20000)
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                p, _ = curve_fit(model, tau, y, p0=[y.mean(), 0.5 * np.ptp(y), f_guess, tg, 0.0], maxfev=20000)
         except RuntimeError:
             continue
         r = np.sum((model(tau, *p) - y) ** 2)

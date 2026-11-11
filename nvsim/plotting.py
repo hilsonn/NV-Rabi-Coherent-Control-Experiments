@@ -44,7 +44,7 @@ def heat(name, panels):
     fig, axs = plt.subplots(1, n, figsize=(5.2 * n, 4), squeeze=False)
     for ax, p in zip(axs[0], panels):
         z = np.asarray(p["z"], float)
-        im = ax.pcolormesh(p["x"], p["y"], z, shading="auto", norm="log" if p.get("log") else None)
+        im = ax.pcolormesh(p["x"], p["y"], z, shading="auto", norm="log" if p.get("log") else None, vmin=p.get("vmin"), vmax=p.get("vmax"))
         fig.colorbar(im, ax=ax, label=p.get("clabel", ""))
         if "levels" in p:
             ax.contour(p["x"], p["y"], z, levels=p["levels"], colors="w", linewidths=0.8)
