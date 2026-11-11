@@ -69,9 +69,9 @@
     { "name": "higher-Q resonator", "overrides": { "microwave.q_unloaded": 80.0 }, "cost_delta_usd": 100, "power_delta_w": -5 }
   ],
   "m0": { "budget_fraction": 0.25, "sample_rate_hz": 1000.0, "line_hz": 50.0, "ambient_ut_rthz": 0.05, "line_ut": 0.2,
-          "gradient_ut_per_mm": 0.5, "vib_um_rthz": 0.05, "balanced_per_shot_ref": true },
+          "gradient_ut_per_mm": 0.5, "vib_um_rthz": 0.05, "fluxgate_pt_rthz": 20.0, "shot_ref_rejection_db": 20.0 },
   "m1": { "rf_options_ohm": [1e4, 1e5, 1e6], "window_ns": 500.0 },
-  "m2": { "coil_const_ut_per_a": 1000.0, "current_step_ma": 0.01, "current_ma": 20.0, "bias_b_mt": [1.0, 2.0, 3.0], "n_dir": 120 },
+  "m2": { "coil_const_ut_per_a": 1000.0, "current_step_ma": 0.002, "current_ma": 1.0, "bias_b_mt": [1.0, 2.0, 3.0], "n_dir": 40 },
   "m3": { "laser_rise_ns": 50.0, "leak_cal_hz": 1.0, "recal_s": [10, 30, 100, 300, 1000], "omega_walk_per_rt_s": 1e-4, "omega_flicker": 1e-4,
           "cal_noise_frac": 3e-3, "t_pi_us": [0.05, 0.1, 0.2, 0.4, 0.8], "init_us": [0.5, 1, 2, 4, 8] },
   "m4": { "loop_gain": 0.3, "n_avg": 10, "synth_step_hz": 1.0, "fallback": true, "step_ut": [1, 5, 20, 50], "ramp_ut_per_s": [10, 100, 1000, 10000], "sim_s": 2.0 },
