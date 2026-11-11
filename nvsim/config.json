@@ -44,8 +44,8 @@
   },
   "thermal": {
     "d_tempco_khz_per_k": -74.0, "magnet_tempco_per_k": -1e-3,
-    "diamond_t_asd_k": 5e-4, "diamond_t_slope": 2.0, "magnet_t_asd_k": 2e-4, "magnet_t_slope": 2.0,
-    "magnet_coupling_frac": 0.1, "mount_r_th_k_per_w": 40.0, "heat_tau_s": 60.0, "sample_hz": 100.0, "duration_s": 3600.0
+    "diamond_t_asd_k": 1e-5, "diamond_t_slope": 3.0, "magnet_t_asd_k": 4e-6, "magnet_t_slope": 3.0,
+    "magnet_coupling_frac": 0.1, "mount_r_th_k_per_w": 40.0, "heat_tau_s": 60.0, "sample_hz": 100.0, "n_real": 6, "duration_s": 3600.0
   },
   "protocol": {
     "rabi_mhz": 8.0, "init_factor": 1.0, "readout_us": 0.0, "pi_overhead_us": 0.05, "dead_us": 0.2,

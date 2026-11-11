@@ -50,17 +50,20 @@ def sample(cfg, rng, n=None, amp=None, t2star_us=None, cm_frac=None):
 
 def _h(ens, mode, omega, det, db, phase=0.0, gain2=1.0, extra=0.0):
     """Rotating-frame H (MHz) per spin. Tone 1 on the -1 line, tone 2 on +1 (DQ). det: tone detuning (MHz).
-    extra: additional magnetic-like shift (MHz) of both lines, e.g. a detuning spread."""
+    extra: additional magnetic-like shift (MHz) of both lines, e.g. a detuning spread.
+    phase: SQ, phase of the tone; DQ, phase of tone 2 relative to tone 1."""
     n = ens["c"].size
     mag = ens["b"] + db + extra
     d1 = det - ens["c"] + mag + ens["a"] * ens["m"]
     d2 = (-det if mode == "dq" else 0.0) - ens["c"] - mag - ens["a"] * ens["m"]
     h = np.zeros((n, 3, 3), complex)
     h[:, 0, 0], h[:, 2, 2] = -d2, -d1
-    o = omega * ens["s"] / 2 * np.exp(1j * phase)
-    h[:, 1, 2], h[:, 2, 1] = o, np.conj(o)
+    o = omega * ens["s"] / 2
+    o1 = o * (1 if mode == "dq" else np.exp(1j * phase))
+    h[:, 1, 2], h[:, 2, 1] = o1, np.conj(o1)
     if mode == "dq":
-        h[:, 1, 0], h[:, 0, 1] = gain2 * o, np.conj(gain2 * o)
+        o2 = gain2 * o * np.exp(1j * phase)
+        h[:, 1, 0], h[:, 0, 1] = o2, np.conj(o2)
     return h, np.stack([-d2, np.zeros(n), -d1], 1)
 
 
