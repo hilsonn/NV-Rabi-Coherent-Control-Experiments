@@ -1,0 +1,94 @@
+{
+  "_units": "time in us, ordinary frequencies in MHz (Rabi frequency = Omega/2pi), pulse length in ns",
+
+  "drive": {
+    "rabi_mhz": 5.0,
+    "mw_detuning_mhz": 0.0,
+    "tau_max_ns": 1500,
+    "n_points": 300
+  },
+
+  "ensemble": {
+    "n_spins": 4000,
+    "t2star_us": 1.0,
+    "amplitude_spread_frac": 0.10,
+    "hyperfine": {
+      "enabled": true,
+      "splitting_mhz": 2.16
+    }
+  },
+
+  "readout": {
+    "contrast": 0.03,
+    "photons_per_shot": 50,
+    "n_repeats": 20000,
+    "add_shot_noise": true
+  },
+
+  "sweeps": {
+    "detuning_range_mhz": [-10.0, 10.0],
+    "n_detuning": 81,
+    "power_scales": [0.25, 0.5, 1.0, 2.0, 4.0]
+  },
+
+  "acquisition": {
+    "sequence_length_us": 5.0
+  },
+
+  "jitter": {
+    "enabled": false,
+    "sigma_ns": 1.0,
+    "n_quadrature": 15,
+    "quantise_ns": 0.0
+  },
+
+  "noise": {
+    "f_ref_hz": 1.0,
+    "baseline": { "enabled": false, "slope": 1.0, "asd_at_ref": 1e-4 },
+    "omega":    { "enabled": false, "slope": 1.0, "asd_at_ref": 5e-4 },
+    "detuning": { "enabled": false, "slope": 2.0, "asd_at_ref": 1e-3 }
+  },
+
+  "thermal": {
+    "enabled": false,
+    "temperature": { "slope": 1.0, "asd_at_ref_k": 1e-3 },
+    "diamond_d_mhz_per_k": -0.074,
+    "bias_field_mt": 5.0,
+    "magnet_tempco_per_k": -1e-3,
+    "mw_gain_tempco_per_k": 0.0,
+    "mw_heating": {
+      "enabled": false,
+      "delta_t_final_k": 0.5,
+      "time_constant_s": 20.0
+    }
+  },
+
+  "vibration": {
+    "enabled": false,
+    "bias_gradient_t_per_m": 0.5,
+    "floor": { "slope": 0.0, "asd_at_ref_m": 0.0 },
+    "resonances": [
+      { "f0_hz": 120.0, "q": 30.0, "asd_peak_m": 1e-8 },
+      { "f0_hz": 400.0, "q": 50.0, "asd_peak_m": 5e-9 }
+    ]
+  },
+
+  "sensitivity": {
+    "dt_s": 1e-3,
+    "n_samples": 65536,
+    "n_realisations": 20,
+    "welch_nperseg": 8192,
+    "working_point": {
+      "mode": "auto",
+      "tau_ns": 100.0,
+      "detuning_mhz": 0.5
+    },
+    "n_spins_slope": 2000
+  },
+
+  "run": {
+    "seed": 1,
+    "output_dir": "output",
+    "dpi": 150
+  }
+}

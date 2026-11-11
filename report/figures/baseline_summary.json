@@ -1,0 +1,51 @@
+{
+  "input_rabi_mhz": 5.0,
+  "pi_pulse_ns_ideal": 100.0,
+  "fit_rabi_mhz": 5.322586960433954,
+  "fit_decay_us": 0.3355445283630968,
+  "shot_noise_snr_per_point": 30.0,
+  "power_sweep": [
+    {
+      "scale": 0.25,
+      "input_mhz": 2.5,
+      "fitted_mhz": 3.079898337352159
+    },
+    {
+      "scale": 0.5,
+      "input_mhz": 3.5355339059327378,
+      "fitted_mhz": 3.9571330051165634
+    },
+    {
+      "scale": 1.0,
+      "input_mhz": 5.0,
+      "fitted_mhz": 5.301061042888923
+    },
+    {
+      "scale": 2.0,
+      "input_mhz": 7.0710678118654755,
+      "fitted_mhz": 7.309053070416767
+    },
+    {
+      "scale": 4.0,
+      "input_mhz": 10.0,
+      "fitted_mhz": 10.158023915674603
+    }
+  ],
+  "dt_s": 0.09999999999999999,
+  "vibration_sigma_mhz_path_a": 0.0,
+  "working_point": {
+    "tau_ns": 571.9063545150502,
+    "detuning_mhz": -6.5,
+    "dy_dB_per_T": -229.29566142004808
+  },
+  "eta_shot_t_per_rthz": 1.9446979205780893e-06,
+  "eta_total_at_f_t_per_rthz": {
+    "1": 1.93346928990598e-06,
+    "500": 1.4123491789238636e-06
+  },
+  "corner_frequency_hz": null,
+  "fit_rabi_mhz_mean": 5.306744736528634,
+  "fit_rabi_mhz_std": 0.009234473425925913,
+  "fit_decay_us_mean": 0.3312959184070765,
+  "fit_decay_us_std": 0.008950763198149865
+}
