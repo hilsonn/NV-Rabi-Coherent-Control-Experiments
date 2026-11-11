@@ -76,10 +76,9 @@ def bom():
     return json.loads((ROOT / "bom.json").read_text())
 
 
-def bom_totals(items=None):
-    items = items if items is not None else bom()
-    lo = sum(i["cost_low"] * i.get("qty", 1) for i in items)
-    hi = sum(i["cost_high"] * i.get("qty", 1) for i in items)
+def bom_totals(items=None, optional=False):
+    items = [i for i in (bom() if items is None else items) if optional or not i.get("optional")]
+    lo, hi = sum(i["cost_low"] for i in items), sum(i["cost_high"] for i in items)
     return {"cost_low": lo, "cost_high": hi, "cost_mid": 0.5 * (lo + hi), "power_w": sum(i["power_w"] for i in items),
             "volume_cm3": sum(i.get("volume_cm3", 0) for i in items)}
 

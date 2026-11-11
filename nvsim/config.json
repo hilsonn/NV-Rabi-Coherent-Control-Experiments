@@ -13,7 +13,7 @@
   },
   "bias": { "field_mt": 2.4, "direction": [0.62, 0.33, 0.71] },
   "optics": {
-    "laser_power_mw": 100.0, "spot_diameter_um": 40.0, "depth_um": 100.0, "nv_ppm": 0.3,
+    "laser_power_mw": 100.0, "spot_diameter_um": 25.0, "depth_um": 100.0, "nv_ppm": 0.3,
     "na": 0.8, "n_diamond": 2.4, "filter_transmission": 0.7, "collection_multiplier": 1.0,
     "driven_fraction": 0.25, "sigma_abs_cm2": 3.1e-17, "wavelength_nm": 520.0, "emission_nm": 700.0,
     "bg_leak": 1e-8, "bg_responsivity_a_per_w": 0.3,
@@ -36,7 +36,7 @@
   },
   "microwave": {
     "f0_mhz": 2874.0, "q_unloaded": 40.0, "coupling_beta": 1.0,
-    "loop_radius_mm": 1.5, "sample_height_mm": 0.5, "sample_offset_mm": 0.3, "field_gain": 1.0, "z0_ohm": 50.0,
+    "loop_radius_mm": 1.5, "sample_height_mm": 0.5, "sample_offset_mm": 0.3, "field_gain": 3.0, "z0_ohm": 50.0,
     "psat_w": 10.0, "comp_sharpness": 2.0, "drive_power_w": 5.0, "rf_duty": 0.01,
     "r_th_k_per_w": 40.0, "diss_fraction": 0.3,
     "switch_isolation_db": 65.0, "iq_image_rejection_db": 35.0, "iq_carrier_leak_db": 40.0,
@@ -48,7 +48,7 @@
     "magnet_coupling_frac": 0.1, "mount_r_th_k_per_w": 40.0, "heat_tau_s": 60.0, "sample_hz": 100.0, "duration_s": 3600.0
   },
   "protocol": {
-    "rabi_mhz": 4.0, "init_factor": 1.0, "readout_us": 0.0, "pi_overhead_us": 0.05, "dead_us": 0.2,
+    "rabi_mhz": 8.0, "init_factor": 1.0, "readout_us": 0.0, "pi_overhead_us": 0.05, "dead_us": 0.2,
     "tau_max_t2": 3.0, "n_tau": 48, "cw_f_mod_hz": 10000.0, "cw_mod_depths_mhz": [0.1, 0.2, 0.4, 0.8, 1.6, 3.2],
     "po_t_pi_us": 0.15, "hard_rabi_mhz": 20.0, "alt_time_factor": 2.0
   },
