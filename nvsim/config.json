@@ -1,0 +1,84 @@
+{
+  "seed": 1,
+  "targets": {
+    "eta_cw_nt": 10.0, "eta_ramsey_nt": 1.0, "dq_drift_ratio": 10.0, "contrast_min": 0.01,
+    "rabi_decay_periods": 5.0, "shot_ratio_max": 2.0, "scale_factor_tol": 0.01,
+    "lock_range_ut": 50.0, "lock_bw_hz": 100.0, "switch_isolation_db": 60.0, "t2star_tol": 0.10,
+    "sq_tempco_khz_per_k": -74.0
+  },
+  "spin": {
+    "d_mhz": 2870.0, "gamma_mhz_per_mt": 28.0, "hyperfine_mhz": 2.16,
+    "t2star_sq_us": 1.0, "common_mode_fraction": 0.3, "n_spins": 2000, "amp_spread_frac": 0.03,
+    "orientations": [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]], "driven_orientation": 0
+  },
+  "bias": { "field_mt": 2.4, "direction": [0.62, 0.33, 0.71] },
+  "optics": {
+    "laser_power_mw": 100.0, "spot_diameter_um": 25.0, "depth_um": 100.0, "nv_ppm": 0.3,
+    "na": 0.8, "n_diamond": 2.4, "filter_transmission": 0.7, "collection_multiplier": 1.0,
+    "driven_fraction": 0.25, "sigma_abs_cm2": 3.1e-17, "wavelength_nm": 520.0, "emission_nm": 700.0,
+    "bg_leak": 1e-8, "bg_responsivity_a_per_w": 0.3,
+    "rates_per_us": { "k_r": 63.0, "k_isc0": 11.0, "k_isc1": 53.0, "k_s0": 3.3, "k_s1": 1.7 },
+    "grid": { "laser_fracs": [0.05, 0.1, 0.2, 0.4, 0.7, 1.0], "omega_mhz": [0.05, 0.1, 0.2, 0.4, 0.8, 1.5, 3.0],
+              "detuning_mhz": 12.0, "n_detuning": 241 },
+    "pol_fraction": 0.9, "readout_max_us": 3.0, "photons_per_shot_scale": 1.0
+  },
+  "detection": {
+    "rf_ohm": 1e5, "temp_k": 300.0, "responsivity_a_per_w": 0.45, "pd_capacitance_pf": 150.0,
+    "en_nv_rthz": 6.0, "en_corner_hz": 100.0, "in_fa_rthz": 50.0,
+    "adc_nv_rthz": 30.0, "adc_bits": 14, "adc_range_v": 2.0, "adc_fs_mhz": 125.0,
+    "rin_at_1hz": 3e-5, "rin_slope": 1.0, "rin_floor": 3e-7,
+    "balanced": true, "balance_rejection_db": 40.0, "ref_current_ratio": 0.5,
+    "f_min_hz": 1.0, "f_max_hz": 1e5, "amp_gbw_mhz": 10.0,
+    "variants": {
+      "diy": {},
+      "commercial": { "balance_rejection_db": 50.0, "en_nv_rthz": 3.0, "rf_ohm": 5e5 }
+    }
+  },
+  "microwave": {
+    "f0_mhz": 2874.0, "q_unloaded": 40.0, "coupling_beta": 1.0,
+    "loop_radius_mm": 1.5, "sample_height_mm": 0.5, "sample_offset_mm": 0.3, "field_gain": 3.0, "z0_ohm": 50.0,
+    "psat_w": 10.0, "comp_sharpness": 2.0, "drive_power_w": 5.0, "rf_duty": 0.01,
+    "r_th_k_per_w": 40.0, "diss_fraction": 0.3,
+    "switch_isolation_db": 65.0, "iq_image_rejection_db": 35.0, "iq_carrier_leak_db": 40.0,
+    "n_positions": 3000, "n_seg": 120
+  },
+  "thermal": {
+    "d_tempco_khz_per_k": -74.0, "magnet_tempco_per_k": -1e-3,
+    "diamond_t_asd_k": 1e-5, "diamond_t_slope": 3.0, "magnet_t_asd_k": 4e-6, "magnet_t_slope": 3.0,
+    "magnet_coupling_frac": 0.1, "mount_r_th_k_per_w": 40.0, "heat_tau_s": 60.0, "sample_hz": 100.0, "n_real": 4, "duration_s": 3600.0
+  },
+  "protocol": {
+    "rabi_mhz": 8.0, "init_factor": 1.0, "readout_us": 0.0, "pi_overhead_us": 0.05, "dead_us": 0.2,
+    "tau_max_t2": 3.0, "n_tau": 48, "cw_f_mod_hz": 10000.0, "cw_mod_depths_mhz": [0.1, 0.2, 0.4, 0.8, 1.6, 3.2],
+    "po_t_pi_us": 0.15, "hard_rabi_mhz": 20.0, "alt_time_factor": 2.0
+  },
+  "sensitivity": {
+    "band_hz": [1.0, 10.0], "low_hz": 0.1, "tornado_factor": 2.0, "mc_draws": 2000, "alt_penalty": true
+  },
+  "unc": {
+    "photon_rate_hz": 2.0, "photocurrent_a": 2.0, "photons_per_shot": 2.0, "contrast_cw": 2.0,
+    "linewidth_cw_mhz": 1.5, "contrast_pulsed": 2.0, "t2star_sq_us": 2.0, "t2star_dq_us": 2.0,
+    "pol_time_us": 1.5, "noise_scale": 1.5
+  },
+  "variants": [
+    { "name": "baseline", "overrides": {}, "cost_delta_usd": 0, "power_delta_w": 0 },
+    { "name": "laser x2", "overrides": { "optics.laser_power_mw": 200.0 }, "cost_delta_usd": 400, "power_delta_w": 3 },
+    { "name": "NA 0.5", "overrides": { "optics.na": 0.5 }, "cost_delta_usd": -150, "power_delta_w": 0 },
+    { "name": "commercial balanced", "overrides": { "detection.balance_rejection_db": 50.0, "detection.en_nv_rthz": 3.0 }, "cost_delta_usd": 1000, "power_delta_w": 1 },
+    { "name": "concentrator x2", "overrides": { "optics.collection_multiplier": 2.0 }, "cost_delta_usd": 200, "power_delta_w": 0 },
+    { "name": "higher-Q resonator", "overrides": { "microwave.q_unloaded": 80.0 }, "cost_delta_usd": 100, "power_delta_w": -5 }
+  ],
+  "m0": { "budget_fraction": 0.25, "sample_rate_hz": 1000.0, "line_hz": 50.0, "ambient_ut_rthz": 0.05, "line_ut": 0.2,
+          "gradient_ut_per_mm": 0.5, "vib_um_rthz": 0.05, "fluxgate_pt_rthz": 20.0, "shot_ref_rejection_db": 20.0 },
+  "m1": { "rf_options_ohm": [1e4, 1e5, 1e6], "window_ns": 500.0 },
+  "m2": { "coil_const_ut_per_a": 1000.0, "current_step_ma": 0.002, "current_ma": 1.0, "bias_b_mt": [1.0, 2.0, 3.0], "n_dir": 40 },
+  "m3": { "laser_rise_ns": 50.0, "leak_cal_hz": 1.0, "recal_s": [10, 30, 100, 300, 1000], "omega_walk_per_rt_s": 1e-4, "omega_flicker": 1e-4,
+          "cal_noise_frac": 3e-3, "cal_time_s": 2.0, "t_pi_us": [0.05, 0.1, 0.2, 0.4, 0.8], "init_us": [0.5, 1, 2, 4, 8] },
+  "m4": { "loop_gain": 0.3, "ki_ratio": 0.1, "n_avg": 10, "synth_step_hz": 1.0, "coarse_tau_us": 0.1, "step_ut": [1, 5, 20, 50], "ramp_ut_per_s": [1000, 10000, 100000, 1000000],
+          "sim_s": 0.2, "n_real": 6, "n_rep": 5000, "n_fit_draws": 10, "allan_s": 4.0, "dist_ut": 20.0, "dist_hz": 2.0 },
+  "m5": { "temp_step_k": 2.0, "cm_fracs": [0.0, 0.2, 0.4, 0.6, 0.8, 0.95], "magnet_tempcos": [0.0, -1e-4, -3e-4, -5e-4, -1e-3, -1.2e-3], "bias_mt": [1.0, 2.0, 3.0],
+          "mode_cost_power": { "sq": [0, 0.0], "sq_alt": [50, 0.5], "dq": [300, 5.0] } },
+  "m6": { "field_ut": 50.0, "dip_deg": 60.0, "heading_need_deg": 1.0, "bias_drift_ppm": 100.0, "scale_err": 0.002, "misalign_deg": 0.5, "t_int_s": 1.0, "cal_tilts_deg": [0, 60, 120],
+          "compact_overrides": { "microwave.psat_w": 5.0, "detection.adc_nv_rthz": 60.0 } },
+  "robust": { "amp_spread": [0.0, 0.05, 0.1, 0.2], "det_spread_mhz": [0.0, 0.3, 0.6, 1.0] }
+}
